@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active:
+    - dev
+---
+spring:
+  profiles: dev
+  application:
+    name:microconfig-test-dev  
+
+server:
+  port: 7001           #Eureka服务端口
+  
+
+---
+spring:
+  profiles: default
+  application:
+    name:microconfig-test-default
+server:
+  port: 7002          #Eureka服务端口
+  
