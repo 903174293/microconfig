@@ -1,0 +1,74 @@
+spring:
+  profiles:
+    active:
+    - dev
+---
+spring:
+  profiles: dev
+  application:
+    name: microcloud-config-eureka-client
+
+server:
+  port: 7001           #Eureka服务端口
+  
+eureka:
+  server:  ######*********这里设置无效服务的清理时间（清理：标记清理的内容，清理，释放内存（三步），清理太频繁会导致性能下降，所以不建议使用eureka的服务清理时间变更，默认60秒即可）
+    eviction-interval-timer-in-ms: 60000  ###########设置无效服务的清理时间（默认是60秒）*******一般无需修改
+    enable-self-preservation: false    #####********关闭受保护模式，之后才能进行更好的清除：关键****一般无需修改
+  client:                               ###############将eureka自身的服务进行eureka注册中心的注册：关键
+    service-url:
+#      defaultZone: http://eureka-7001.com:7001/eureka  #  定义你服务的注册路径
+#      defaultZone: http://edmin:hello@eureka-7001.com:7001/eureka     ######*******所有的注册服务都需要添加认证信息************定义服务的注册路径：非常关键：eureka设置安全认证之后的路径
+     #####**********情调一下：正常开发中没人搞HA，主机没那么脆弱：注意
+      defaultZone: http://edmindev:hello@eureka-7001.com:7001/eureka
+   #######以下两句话不写的时候（本服务进行注册），还是报错，是因为，服务还没启动好，就开始注册，当然会报错了，但之后会注册成功，页面上有正常的显示
+    register-with-eureka: false    ######当前的服务不注册到eureka之中，这个服务连接eureka为了保证不报错，后续发现它总会找一个8671的服务，现在设置了，你应该在7001进行注册***********注意一下
+    fetch-registry: false   ######该服务不通过eureka抓取任何的注册信息，意思是消费端获取不了任何的信息项
+  instance:
+    lease-renewal-interval-in-seconds: 30   #####设置心跳的间隔时间（默认30秒）******一般无需修改
+    lease-expiration-duration-in-seconds: 90    #####如果心跳间隔超过90秒（默认90秒），则表明实例已经不存在，或者不健康********一般无需修改
+    hostname: eureka-7001.com     #**************进行HA配置的时候，这里必须进行修改，当前是7001无需修改，7002和7003要依次修改
+    
+security:
+#    sessions: always    #有状态session：总是保持用户状态，即：有状态
+    sessions: stateless    #不保留用户状态 ，这是默认值
+    basic:
+      enabled: true          #启用SpringSecurity的安全配置，默认值为true，所以在加入jar包之后，不做任何的配置即可实现
+    user:                             #默认生成的用户名始终为user，密码在项目启动的时候，控制台生成-----------------实际开发中不可以使用，因为成百上千个微服务的密码无法记录，重启候再记录，非常麻烦
+      name: edmindev    #用户名*************************此处设置了自己的用户名和密码，随后启动的时候控制台不再生成密码
+      password: hello
+---
+spring:
+  profiles: beta
+  application:
+    name: microcloud-config-eureka-client
+server:
+  port: 7002          #Eureka服务端口
+  
+eureka:
+  server:  ######*********这里设置无效服务的清理时间（清理：标记清理的内容，清理，释放内存（三步），清理太频繁会导致性能下降，所以不建议使用eureka的服务清理时间变更，默认60秒即可）
+    eviction-interval-timer-in-ms: 60000  ###########设置无效服务的清理时间（默认是60秒）*******一般无需修改
+    enable-self-preservation: false    #####********关闭受保护模式，之后才能进行更好的清除：关键****一般无需修改
+  client:                               ###############将eureka自身的服务进行eureka注册中心的注册：关键
+    service-url:
+#      defaultZone: http://eureka-7002.com:7002/eureka  #  定义你服务的注册路径
+#      defaultZone: http://edmin:hello@eureka-7002.com:7002/eureka     ######*******所有的注册服务都需要添加认证信息************定义服务的注册路径：非常关键：eureka设置安全认证之后的路径
+     #####**********情调一下：正常开发中没人搞HA，主机没那么脆弱：注意
+      defaultZone: http://edminbeta:hello@eureka-7002.com:7002/eureka
+   #######以下两句话不写的时候（本服务进行注册），还是报错，是因为，服务还没启动好，就开始注册，当然会报错了，但之后会注册成功，页面上有正常的显示
+    register-with-eureka: false    ######当前的服务不注册到eureka之中，这个服务连接eureka为了保证不报错，后续发现它总会找一个8671的服务，现在设置了，你应该在7001进行注册***********注意一下
+    fetch-registry: false   ######该服务不通过eureka抓取任何的注册信息，意思是消费端获取不了任何的信息项
+  instance:
+    lease-renewal-interval-in-seconds: 30   #####设置心跳的间隔时间（默认30秒）******一般无需修改
+    lease-expiration-duration-in-seconds: 90    #####如果心跳间隔超过90秒（默认90秒），则表明实例已经不存在，或者不健康********一般无需修改
+    hostname: eureka-7002.com       #**************进行HA配置的时候，这里必须进行修改，当前是7001无需修改，7002和7003要依次修改
+    
+security:
+#    sessions: always    #有状态session：总是保持用户状态，即：有状态
+    sessions: stateless    #不保留用户状态 ，这是默认值
+    basic:
+      enabled: true          #启用SpringSecurity的安全配置，默认值为true，所以在加入jar包之后，不做任何的配置即可实现
+    user:                             #默认生成的用户名始终为user，密码在项目启动的时候，控制台生成-----------------实际开发中不可以使用，因为成百上千个微服务的密码无法记录，重启候再记录，非常麻烦
+      name: edminbeta    #用户名*************************此处设置了自己的用户名和密码，随后启动的时候控制台不再生成密码
+      password: hello
+
