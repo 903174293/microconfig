@@ -56,7 +56,7 @@ eureka:
     service-url:
 #      defaultZone: http://eureka-7001.com:7001/eureka                #*******************定义服务的注册路径：非常关键
 #      defaultZone: http://edmin:hello@eureka-7001.com:7001/eureka                #*******所有的注册服务都需要添加认证信息************定义服务的注册路径：非常关键：eureka设置安全认证之后的路径
-      defaultZone: http://edminbeta:hello@eureka-7001.com:7001/eureka
+      defaultZone: http://edminbeta:hello@eureka-7002.com:7002/eureka
   instance:
      instance-id: dept-8001.com
      prefer-ip-address: true     #***********底部显示IP地址：关键  **********鼠标指住注册信息，eureka页面左下角显示ip地址
@@ -91,5 +91,5 @@ spring:
       max-wait-millis: 200                        # 最大等待时间
       initial-size: 1                             # 初始化连接数
 server: 
-  port: 8001                                      # 定义服务端口
+  port: 8001                                   # 定义服务端口
 
