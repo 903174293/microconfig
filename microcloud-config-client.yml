@@ -13,7 +13,7 @@ eureka:
   client:
     service-url:
 #      defaultZone:http://edmin:hello@eureka-7001.com:7001/eureka,http://edmin:hello@eureka-7002.com:7002/eureka,http://edmin:hello@eureka-7003.com:7003/eureka   #######*******HA集群配置
-      defaultZone:http://edmin:hello@eureka-config.com:7401/eureka
+      defaultZone: http://edmin:hello@eureka-config.com:7401/eureka
 
 ---
 spring:
@@ -27,4 +27,4 @@ eureka:
   client:
     service-url:
 #      defaultZone:http://edmin:hello@eureka-7001.com:7001/eureka,http://edmin:hello@eureka-7002.com:7002/eureka,http://edmin:hello@eureka-7003.com:7003/eureka   #######*******HA集群配置
-      defaultZone:http://edmin:hello@eureka-config.com:7401/eureka
+      defaultZone: http://edmin:hello@eureka-config.com:7401/eureka
