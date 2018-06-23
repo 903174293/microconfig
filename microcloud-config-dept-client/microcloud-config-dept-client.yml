@@ -37,7 +37,9 @@ spring:
     url: jdbc:mysql://localhost:3306/dept8001     # 数据库的连接地址
     driver-class-name: org.gjt.mm.mysql.Driver    # 驱动程序
     username: root                                # 用户名
-    password: '{cipher}42db536ceb4e8c483aa90b996dafd77baa259cdd1670a8e2478a319bfef7bc8b'                          # 密码
+    #***这是第一种密钥加密处理*****password: '{cipher}42db536ceb4e8c483aa90b996dafd77baa259cdd1670a8e2478a319bfef7bc8b'                          # 密码
+     # 密码*******以下加入了jks（keystore处理）
+    password: '{cipher}AQCxD//66FN9K6Tx+HulUmiTjO3mi1jg2I1n8s+H1C/rjOeRAMXU56UON7mf1B2vDioNgaFdqQQe1q89WRHldJdgyMZndGgiUrxdLO5u0YNDTYj78xvSaLIRo68RQOFRjbfT1NLxf/gULTzbk2EZnuJNeSibGRTmVCW1vT+W7Z7EEBzB3YHX5N3LRvJ8l7O8SQEtr5leWjX3gN74Fb5C+78ntP0NxcHy1Q4slNRWTAybsYlme956HtNLLgnmgU4bzhkfNFPg7q0esMmN9Fg/D8sp+g+mZaiZX+gV9JSembQE8IJtqqhc4WAe4fB1lmDwP9sKRHjQ0T7cKGryAk17vENuFlDRPU5ymlwDiuLRmKJjk0zbnNMo1GEDSlBI4EuDJoE='                          # 密码*******这里加入了jks（keystore处理）
     dbcp2:                                        # 数据库连接池配置
       min-idle: 1                                 # 最小维持连接数
       max-idle: 1                                 # 最大维持连接数
