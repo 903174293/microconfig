@@ -37,7 +37,7 @@ spring:
     url: jdbc:mysql://localhost:3306/dept8001     # 数据库的连接地址
     driver-class-name: org.gjt.mm.mysql.Driver    # 驱动程序
     username: root                                # 用户名
-    password: 123456                          # 密码
+    password: '{cipher}a2722e75244753f656aa9776e5af8a4e94452046fe68087b798a1500fee9bdca'                          # 密码
     dbcp2:                                        # 数据库连接池配置
       min-idle: 1                                 # 最小维持连接数
       max-idle: 1                                 # 最大维持连接数
