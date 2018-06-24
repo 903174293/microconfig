@@ -33,6 +33,6 @@ eureka:
 #      defaultZone:http://edmin:hello@eureka-7001.com:7001/eureka,http://edmin:hello@eureka-7002.com:7002/eureka,http://edmin:hello@eureka-7003.com:7003/eureka   #######*******HA集群配置
       defaultZone: http://edmin:hello@eureka-config.com:7401/eureka
 info:
-    app.name: mldn-microcloud-beta-1
+    app.name: mldn-microcloud-beta-2
     company.name: www.mldn.cn
-    app.version: v-beta-1.0.0
+    app.version: v-beta-2.1.2
